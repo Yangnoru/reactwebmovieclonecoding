@@ -11,11 +11,42 @@
 </body>
 <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
 <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-<script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">    /* JSX는 브라우저가 알아듣지못한다. 그래서 babel로 변환해준다. */
+   
+    /*   old way
+    const h3 = React.createElement(
+        "h3" 
+        , {
+             id : "title",
+             onMouseEnter: () => console.log("mouse entered")
+          }
+        , "H3 Here!");
+    */
     const root = document.getElementById("root");
-    const h3 = React.createElement("h3" , { onMouseEnter: () => console.log("mouse entered")}   , "H3 Here!");
-    const btn = React.createElement("button", { onClick: () => console.log("I'm clicked")} , "click me");
-    const container = React.createElement("div", null, [h3, btn]);
-    ReactDOM.render(container, root);
+
+    const Title = () => (
+        <h3 
+        id="title"
+         onMouseEnter = {() => console.log("mouse entered")}
+         >H3 Here
+         </h3>);
+
+    const Button = () => (
+        <button
+         style={{
+             backgroundColor:"tomato",
+             }}
+              onClick = { () => console.log("i'm clicked")}
+              >
+              click me
+              </button>);  
+    const Container = () => (
+        <div>
+         <Title/>
+         <Button/>   
+        </div>
+    )
+    ReactDOM.render(<Container/>, root);
 </script>
 </html>
