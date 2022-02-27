@@ -14,39 +14,25 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">    /* JSX는 브라우저가 알아듣지못한다. 그래서 babel로 변환해준다. */
    
-    /*   old way
-    const h3 = React.createElement(
-        "h3" 
-        , {
-             id : "title",
-             onMouseEnter: () => console.log("mouse entered")
-          }
-        , "H3 Here!");
-    */
+
     const root = document.getElementById("root");
+    let counter = 0;
+    function countUp(){
+        counter = counter +1;
+        render();
+    }
 
-    const Title = () => (
-        <h3 
-        id="title"
-         onMouseEnter = {() => console.log("mouse entered")}
-         >H3 Here
-         </h3>);
-
-    const Button = () => (
-        <button
-         style={{
-             backgroundColor:"tomato",
-             }}
-              onClick = { () => console.log("i'm clicked")}
-              >
-              click me
-              </button>);  
+    function render(){
+        ReactDOM.render(<Container/>, root);
+    }
+    
     const Container = () => (
-        <div>
-         <Title/>
-         <Button/>   
-        </div>
-    )
-    ReactDOM.render(<Container/>, root);
+    <div>
+        <h3>Total clicks: {counter}</h3>
+        <button onClick = {countUp}>click me</button>
+    </div>
+    );
+    
+    render();
 </script>
 </html>
